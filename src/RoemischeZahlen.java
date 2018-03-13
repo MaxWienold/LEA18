@@ -9,9 +9,6 @@ public class RoemischeZahlen {
 		Ausgaben.menuAnzeigen();
 		
 		
-		Scanner leser = new Scanner(System.in);
-		int zahl = leser.nextInt();
-		System.out.println(Zahlformatierung.arabischRömisch(zahl));
-		leser.close();
+
 	}
 }

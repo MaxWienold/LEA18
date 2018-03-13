@@ -55,7 +55,7 @@ public class Menue {
 				break;
 			}
 			default:{
-				fehler();
+				Ausgaben.fehler();
 				
 				break;
 			}
@@ -81,7 +81,7 @@ public class Menue {
 				geht = false;
 			}
 			catch(Exception e){
-				fehler();
+				Ausgaben.fehler();
 			}
 		}while(geht);
 	}
@@ -92,10 +92,7 @@ public class Menue {
 	}
 
 
-	public void fehler() {
-		System.out.println("Das hat nicht geklappt, bitte nochmal probieren.");
-		
-	}
+
 	
 	//3. Eingabe fordern und prüfen.
 	//4. Funktion starten.
