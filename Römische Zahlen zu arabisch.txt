@@ -1,0 +1,4 @@
+Die Tausenderstelle ist einfach zu erkennen: alle M am Anfang der Römischen Zahl.
+Die Hunderterstelle beginnt immer mit dem ersten C oder D.
+Die Zehnerstelle beginnt immer mit dem ersten X oder L.
+Die Einerstelle beginnt immer mit dem ersten I oder V."
