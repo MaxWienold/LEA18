@@ -1,14 +1,28 @@
-import java.util.Scanner;
 
 public class RoemischeZahlen {
+	
+		private int wert;
+		private String text;
 
-	public static Scanner eingabe = new Scanner(System.in);
+		public RoemischeZahlen(int wert, String text) {
+			this.wert = wert;
+			this.text = text;
+		}
 
-	public static void main(String[] args) {
-		Menue.arrayAufbauen();
-		Ausgaben.menuAnzeigen();
-		
-		
+		public int getWert() {
+			return wert;
+		}
+
+		public void setWert(int wert) {
+			this.wert = wert;
+		}
+
+		public String getText() {
+			return text;
+		}
+
+		public void setText(String text) {
+			this.text = text;
+		}
 
 	}
-}
