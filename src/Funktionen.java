@@ -1,4 +1,5 @@
-
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Funktionen {
 	
@@ -15,6 +16,14 @@ public class Funktionen {
 	}
 	
 	public static void dateiFormatieren() {
+		System.out.println("Bitte den absoluten Pfad zur Textdatei angeben:");
+		String pfad = RoemischerRechner.eingabe.nextLine();
+		
+		
+		
+		
+	}
+	public static void rechnen() {
 		
 	}
 

@@ -1,40 +1,28 @@
-import java.util.Scanner;
 
 public class RoemischeZahlen {
-
-	public static Scanner eingabe = new Scanner(System.in);
 	
-	
+		private int wert;
+		private String text;
 
-	public static void main(String[] args) {
-	    System.out.println("       ____            ____\n"
-	    		+"      /   /           /   /\n"
-	    		+"     /   /           /   /\n"
-	    		+"    /   /___   ____ /   /___\n"
-	    		+"   /   _    \\ /___//   _    \\\n"
-	    		+"  /   / /   //   //   / /   /\n"
-	    		+" /   /_/   //   //   /_/   / ____ ____\n"
-	    		+"/         //   //         / /   //   /\n"
-	    		+"\\________/ \\__/ \\________/ /   //   /\n"
-	    		+"    ________   ________   /   //   /________   ________   ________\n"
-	    		+"   /   __   \\ /   _    \\ /   //   //   ___  \\ /   __   \\ /   ___  \\\n"
-	    		+"  /   / /___//   / /   //   //   //   /__/  //   / /___//   /__/  /\n"
-	    		+" /   /___   /   /_/   //   //   //   ______//   /_____ /   ______/\n"
-	    		+"/        \\ /         //   //   //         //         //         /\n"
-	    		+"\\________/ \\________/ \\___\\\\___\\\\________/ \\____/___/ \\________/\n");
+		public RoemischeZahlen(int wert, String text) {
+			this.wert = wert;
+			this.text = text;
+		}
 
-	    
-	    System.out.println("____________________________\n\n"
-	    		+ "lateinischer Rechner\n\n"
-	    		+ "entstanden als LEA im Frühjahr 2018\n"
-	    		+ "Entwickelt von Volkan Hanke und Max Wienold\n"
-	    		+ "____________________________\n\n");
-	    
-	    
-		Menue.arrayAufbauen();
-		Menue.schleife();
-		
-		
+		public int getWert() {
+			return wert;
+		}
+
+		public void setWert(int wert) {
+			this.wert = wert;
+		}
+
+		public String getText() {
+			return text;
+		}
+
+		public void setText(String text) {
+			this.text = text;
+		}
 
 	}
-}
