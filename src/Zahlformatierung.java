@@ -35,99 +35,112 @@ public class Zahlformatierung {
 		if(zahl < 0) {
 			System.out.println("Die Römer kannten keine negativen Zahlen.");
 			gültig = false;
-	
-			
+
+
 		}
-		if(zahl > 61109){
-			System.out.println("Dieser Rechner kann nur mit Zahlen bis 61109 umgehen.");
+		if(zahl > 39999){
+			System.out.println("Dieser Rechner kann nur mit Zahlen bis 39999 umgehen.");
 			gültig = false;
 		}
-		
+
 		return gültig;
 	}
+
+
+
 	public static boolean istGueltigRoemisch(String text) {
-		StringBuilder zeichen = new StringBuilder();
-		boolean gültigZeichen = false;
-		boolean gültig = false;
+		text = text.toUpperCase();
+	
+		boolean gueltigeZiffer = true;
+		boolean gueltigeStelle = true;
+		boolean gueltigeAnzahl = true;
+		
 		for (int i = 0; i < text.length(); i++) {
-									//Überprüfen, ob das Zeichen eine römische Ziffer ist.
-			for (int j = 0; j < werte.size(); j++) {
-				if (text.charAt(i) == werte.get(j).getText().charAt(0)) {
-												
-					gültigZeichen = true; 
-					gültig = true;
-									//Überprüfen, ob das Zeichen vor dem nächsten stehen darf.
-					if(i+1 < text.length() && werte.get(j).getText().length() > 1) {
-						if(text.charAt(i+1) != werte.get(j).getText().charAt(1) ) {
-							if(text.charAt(i+1) != werte.get(j+2).getText().charAt(1)) {
-								if(text.charAt(i+1) != text.charAt(i)) {
-									System.out.println(text.charAt(i) + " darf nicht vor " + text.charAt(i+1) + " stehen.");
-									gültig = false;
-								}
-							}
-						}
+			//1. Prüfen, ob der char eine römische Ziffer ist.
+			boolean ziffer = istRoemischeZiffer(text.charAt(i));
+			if (gueltigeZiffer)
+				gueltigeZiffer = ziffer;
+			//2. Prüfen, ob der char an richtiger Stelle steht.			
+			if (i + 1 < text.length()) { 
+				boolean stelle = istAnGueltigerStelle(text.charAt(i), text.charAt(i + 1));
 
-					}
-					else {
-						if(j > 3 ) {
-							System.out.println(text.charAt(i) + " darf nicht vor " + text.charAt(i+1) + " stehen.");
-
-							gültig = false;
-						}
-						if(i+1 < text.length()) {
-							
-							if(text.charAt(i+1) != werte.get(j - 1).getText().charAt(1) ){
-								if(text.charAt(i+1) != werte.get(j - 3).getText().charAt(1)) {
-									System.out.println(text.charAt(i) + " darf nicht vor " + text.charAt(i+1) + " stehen.");
-
-									gültig = false;
-								}
-
-							}
-						}
-					}
-					j = werte.size();
-				}
-
-
-
+				if (gueltigeStelle)
+					gueltigeStelle = stelle;
 			}
-								//ungültige Zeichen zusammenfassen
-			if(!gültigZeichen) {
-				zeichen.append(text.charAt(i)+ " ");
-
+			
+			if (i + 3 < text.length()) {
+				boolean anzahl = hatGueltigeAnzahl(text.charAt(i), text.charAt(i + 1), text.charAt(i + 2), text.charAt(i + 3));
+				
+				if(gueltigeAnzahl)
+					gueltigeAnzahl = anzahl;
 			}
-			if(i < text.length() - 1)
-				gültigZeichen = false;
-		}
-
-		if (!gültigZeichen) {
-			System.out.print(zeichen.toString());
-			if (zeichen.toString().length() > 2)
-				System.out.println("sind keine lateinischen Ziffern.");
-			else
-				System.out.println("ist keine gültige lateinische Ziffer.");
-
-			gültig = false;
-		}
-										//Überprüfen, ob die Subtraktionsregel erfüllt ist
-		for (int i = 0; i < text.length(); i++) {
-			if(text.length() - i > 3)
-				if(text.charAt(i) == text.charAt(i + 1) && text.charAt(i) == text.charAt(i + 2) && text.charAt(i) == text.charAt(i + 3)) {
-					
-					System.out.println("Es dürfen keine vier " + text.charAt(i) +" hintereinander stehen.");
-					gültig = false;
-				}
+			
+			
 
 		}
-		if(!gültig)
+
+		if(!gueltigeAnzahl || !gueltigeStelle || !gueltigeZiffer) {
 			Ausgaben.zahlenfehlerAusgeben();
-		return gültig;
+			return false;
+		}
+		else
+			return true;
+	}
+	
+	
+	
+	
 
+	public static boolean istRoemischeZiffer(char zeichen) {
+		for (RoemischeZahlen ro : werte) {
+			if(zeichen == ro.getText().charAt(0)) {
+				return true;
+			}
+
+		}
+		System.out.println(zeichen + " ist keine römische Ziffer.");
+		return false;
 	}
 
 	
 	
+	
+	public static boolean istAnGueltigerStelle(char erste, char zweite ) {
+		String ersteStr = String.valueOf(erste);
+		String zweiteStr = String.valueOf(zweite);
+		//1. Prüfen, ob die nächste stelle größer ist.
+		if (formatiertInArabisch(ersteStr) < formatiertInArabisch(zweiteStr) ) {
+			//wenn ja, prüfen, ob die Kombination gültig ist.
+			for (int i = 0; i < werte.size(); i++) {
+				if(werte.get(i).getText().length() > 1) {
+					if (erste == werte.get(i).getText().charAt(0) && zweite == werte.get(i).getText().charAt(1)) {
+
+						return true;
+					}
+				}
+			}
+
+			System.out.println(erste + " darf nicht vor " + zweite + " stehen.");
+			return false;
+		}
+		else
+
+			return true;
+	}
+	
+	
+	
+	
+	public static boolean hatGueltigeAnzahl(char erste, char zweite, char dritte, char vierte) {
+		if (erste == zweite && erste == dritte && erste == vierte)
+			return false;
+		else
+			return true;
+	}
+	
+
+
+
 	public static String formatiertInRoemisch(int zahl) {
 
 
@@ -147,6 +160,7 @@ public class Zahlformatierung {
 
 
 	public static int formatiertInArabisch(String text) {
+		text = text.toUpperCase();
 		int zahl = 0;
 
 		for (int a = 0 ; a < text.length(); a++){
@@ -167,11 +181,5 @@ public class Zahlformatierung {
 	}
 
 
-	public static void ausgabeTest() {
-		int gesamt = 0;
-		for (RoemischeZahlen ro : werte) {
-			gesamt += ro.getWert() * 3;
-		}
-		System.out.println(gesamt);
-	}
+
 }

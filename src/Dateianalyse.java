@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dateianalyse {
-	
+
+
 	public static List<String[]> zerlegen(String pfad) {
 		List<String[]> strings = new ArrayList<String[]>();
 
@@ -12,7 +13,7 @@ public class Dateianalyse {
 			br = new BufferedReader(new FileReader(new File(pfad)));
 			String line = null;
 			while((line = br.readLine()) != null) {              
-				String[] parts = line.split(" ");
+				String[] parts = line.split("[^a-zA-Z0-9-]+");
 				strings.add(parts);
 			}
 		} 
@@ -34,12 +35,41 @@ public class Dateianalyse {
 				}
 			}
 
-			for(String[] a : strings){
-				for(int i = 0; i< a.length;i++)
-					System.out.print(a[i] + " ");
-				System.out.println();
-			}
+
 		}
 		return strings;
+	}
+
+	public static void zahlenAendern(String pfad) {
+		List<String[]> strings = zerlegen(pfad);
+		int b = 1;
+		for(String[] a : strings){
+			for(int i = 0; i< a.length;i++) {
+				
+//				try {
+//					int zahl = Integer.parseInt(a[i]);
+//					if(Zahlformatierung.istGueltigArabisch(zahl))
+//						a[i] = Zahlformatierung.formatiertInRoemisch(zahl);
+//					else {
+//						int zeichen = 1;
+//						for (int j = 0; j < i; j++) {
+//							zeichen += a[j].length();
+//						}
+//						System.out.println("In Zeile " + b + " bei Zeichen " + zeichen + ".");
+//						
+//					}
+//				} catch (Exception e) {
+//					// TODO: handle exception
+//				}
+
+				System.out.println(a[i]);
+
+			}
+			System.out.print("\n");
+
+		}
+	}
+	public static void zeichenÄndern() {
+
 	}
 }
