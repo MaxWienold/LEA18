@@ -5,8 +5,8 @@ public class Ausgaben {
 	public static void menuAnzeigen() 
 	{
 
-		for(int i = 0; i < Menue.funktionen.length; i++) {
-			System.out.println("[" + (i+1) + "]\t" + Menue.funktionen[i][0]);
+		for(int i = 0; i < Interaktionen.funktionen.length; i++) {
+			System.out.println("[" + (i+1) + "]\t" + Interaktionen.funktionen[i][0]);
 
 		}
 	}
@@ -20,6 +20,6 @@ public class Ausgaben {
 	}
 	
 	public static void funktionenIntro(int auswahl) {
-		System.out.println(Menue.funktionen[auswahl - 1][1]);
+		System.out.println(Interaktionen.funktionen[auswahl - 1][1]);
 	}
 }

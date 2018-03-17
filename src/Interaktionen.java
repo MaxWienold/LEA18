@@ -1,27 +1,28 @@
 
 
-public class Menue {
+public class Interaktionen {
 
 
 
-	public static String[][] funktionen = new String[5][2];
+	public static String[][] funktionen = new String[6][2];
 
 	private static int auswahl = 0;
 
 
 
 	public static void arrayAufbauen() {
-		Menue.funktionen[0][0] = "Erklärung";
-		Menue.funktionen[0][1] = "Lassen Sie sich erklären, wie die Umrechnung von lateinischen Zahlen funktioniert.";
-		Menue.funktionen[1][0] = "Arabisches Format";
-		Menue.funktionen[1][1] = "Hier können Sie lateinische Ziffern in arabische Zahlen umwandeln.";
-		Menue.funktionen[2][0] = "Lateinisches Format";
-		Menue.funktionen[2][1] = "Hier können Sie normale arabische Zahlen in lateinische Ziffern umwandeln.";
-		Menue.funktionen[3][0] = "Datei Formatieren";
-		Menue.funktionen[3][1] = "Hier können Sie die Zahlen in einem Fließtext komplett formatieren.";
-		Menue.funktionen[4][0] = "Rechner";
-		Menue.funktionen[4][1] = "Hier können Sie lateinische Zahlen addieren und subtrahieren.";
-
+		Interaktionen.funktionen[0][0] = "Erklärung";
+		Interaktionen.funktionen[0][1] = "Lassen Sie sich erklären, wie die Umrechnung von lateinischen Zahlen funktioniert.";
+		Interaktionen.funktionen[1][0] = "Arabisches Format";
+		Interaktionen.funktionen[1][1] = "Hier können Sie lateinische Ziffern in arabische Zahlen umwandeln.";
+		Interaktionen.funktionen[2][0] = "Lateinisches Format";
+		Interaktionen.funktionen[2][1] = "Hier können Sie normale arabische Zahlen in lateinische Ziffern umwandeln.";
+		Interaktionen.funktionen[3][0] = "Datei Formatieren";
+		Interaktionen.funktionen[3][1] = "Hier können Sie die Zahlen in einem Fließtext komplett formatieren.";
+		Interaktionen.funktionen[4][0] = "Lateinischer Rechner";
+		Interaktionen.funktionen[4][1] = "Hier können Sie lateinische Zahlen addieren,subtrahieren und multiplizieren.";
+		Interaktionen.funktionen[5][0] = "Arabischer Rechner";
+		Interaktionen.funktionen[5][1] = "Hier können Sie arabische Zahlen addieren,subtrahieren dividieren und multiplizieren.";
 
 	}
 
@@ -76,6 +77,23 @@ public class Menue {
 		return input;
 
 	}
+	
+	public static int intEingabe() {
+		int zahl = 0;
+		boolean geht = true;
+		do {
+			try {
+				zahl = Integer.parseInt(eingabeEmpfangen());
+
+				geht = false;
+			}
+			catch(Exception e){
+				Ausgaben.zahlenfehlerAusgeben();
+			}
+		}while(geht);
+		
+		return zahl;
+	}
 
 	public static int auswählen() 
 	{
@@ -100,7 +118,7 @@ public class Menue {
 	public static void funktionStarten(int auswahl) {
 		switch (auswahl) {
 		case(1):{
-			Funktionen.erklärung();
+			Funktionen.erklaerung();
 			break;
 		}
 		case(2):{
@@ -113,13 +131,20 @@ public class Menue {
 		}
 		case(4):{
 			Funktionen.dateiFormatieren();
+			break;
 		}
 		case(5):{
-			Funktionen.rechnen();
-		}
+			Funktionen.latRechnen();
+			break;
+			}
+		case(6):{
+			Funktionen.arabRechnen();
+			break;
+			}
 		default:{
 			Ausgaben.fehlerAusgeben();
-		}
+			break;
+			}
 		}
 
 
@@ -129,9 +154,6 @@ public class Menue {
 
 
 
-
-	//3. Eingabe fordern und prüfen.
-	//4. Funktion starten.
 
 
 
